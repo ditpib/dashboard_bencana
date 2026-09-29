@@ -1,0 +1,651 @@
+
+
+Index · HTML
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pantau Perkembangan Dampak Bencana — Indonesia Bagian Barat</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%8A%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#16314F; --navy-2:#1E4066; --amber:#E8A33D; --amber-2:#C97F1E;
+    --bg:#F1F4F8; --panel:#FFFFFF; --border:#DCE2EA; --text:#1A1E24; --muted:#4B5563;
+    --danger-bg:#FDEEE8; --danger-bd:#E3A47B; --danger-tx:#8A3B1A;
+    --info-bg:#E7EEF6; --info-tx:#28425F;
+    --warn-bg:#FCEFC7; --warn-tx:#7A5B05; --warn-bd:#E9CE86; --amber-ink:#8A5209;
+    --st-transisi-bg:#FCEFC7; --st-transisi-tx:#7A5B05;
+    --st-tanggap-bg:#FBDFDA; --st-tanggap-tx:#96311C;
+    --st-tidak-bg:#E1F0E5; --st-tidak-tx:#1E6B3A;
+    --st-none-bg:#E7E9EC; --st-none-tx:#4B5563;
+    --shadow: 0 1px 2px rgba(20,30,45,.06), 0 1px 1px rgba(20,30,45,.04);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#11151b; --panel:#1A2028; --border:#2B3441; --text:#E8ECF1; --muted:#A6B0BE;
+      --danger-bg:#3A2417; --danger-bd:#7A4A2A; --danger-tx:#F3C6A8;
+      --info-bg:#1E2A3A; --info-tx:#BFD2E8;
+      --warn-bg:#3A3212; --warn-tx:#F3D778; --warn-bd:#6b5a1c; --amber-ink:#F0B25C;
+      --st-transisi-bg:#453A12; --st-transisi-tx:#F3D778;
+      --st-tanggap-bg:#442019; --st-tanggap-tx:#F3AC9C;
+      --st-tidak-bg:#173324; --st-tidak-tx:#9FE0B8;
+      --st-none-bg:#2B3441; --st-none-tx:#A6B0BE;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#11151b; --panel:#1A2028; --border:#2B3441; --text:#E8ECF1; --muted:#A6B0BE;
+    --danger-bg:#3A2417; --danger-bd:#7A4A2A; --danger-tx:#F3C6A8;
+    --info-bg:#1E2A3A; --info-tx:#BFD2E8;
+    --warn-bg:#3A3212; --warn-tx:#F3D778; --warn-bd:#6b5a1c; --amber-ink:#F0B25C;
+    --st-transisi-bg:#453A12; --st-transisi-tx:#F3D778;
+    --st-tanggap-bg:#442019; --st-tanggap-tx:#F3AC9C;
+    --st-tidak-bg:#173324; --st-tidak-tx:#9FE0B8;
+    --st-none-bg:#2B3441; --st-none-tx:#A6B0BE;
+    color-scheme: dark;
+  }
+  *{box-sizing:border-box}
+  html{scroll-padding-top:env(safe-area-inset-top,0px)}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:'IBM Plex Sans',system-ui,sans-serif;
+    padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+    -webkit-font-smoothing:antialiased;
+  }
+  .num{font-family:'Space Grotesk',sans-serif}
+  a{color:inherit}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+  header.top{background:linear-gradient(180deg,var(--navy) 0%,var(--navy-2) 100%);padding:22px 0 26px 0;color:#fff}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.08em;color:#B9C7DA;text-transform:uppercase}
+  h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(22px,4vw,32px);line-height:1.15;margin:6px 0 10px 0;text-wrap:balance}
+  .badge-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:2px}
+  .badge{display:inline-block;background:var(--amber);color:var(--navy);font-weight:700;font-size:13.5px;letter-spacing:.03em;padding:5px 12px;border-radius:4px}
+  .sub{font-size:12.5px;color:#C7D3E2}
+  main{padding:22px 0 60px 0}
+  .lead{font-size:14.5px;line-height:1.6;color:var(--muted);margin:4px 0 20px 0;text-wrap:pretty}
+  .lead b{color:var(--text)}
+ 
+  .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-bottom:16px}
+  .kpi{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:16px 17px;box-shadow:var(--shadow);border-top:4px solid var(--navy)}
+  .kpi.money{border-top-color:var(--amber)}
+  .kpi-head{display:flex;align-items:center;gap:7px;margin-bottom:8px}
+  .kpi-head svg{flex-shrink:0}
+  .kpi-label{font-size:11.5px;font-weight:700;letter-spacing:.05em;color:var(--navy);text-transform:uppercase}
+  :root[data-theme="dark"] .kpi-label{color:#8fb1da}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .kpi-label{color:#8fb1da}}
+  .kpi-num{font-size:30px;font-weight:700;line-height:1.05;margin-bottom:2px}
+  .kpi-sub{font-size:13px;font-weight:600;color:var(--text);margin-bottom:5px}
+  .kpi-cap{font-size:12px;line-height:1.45;color:var(--muted)}
+ 
+  .status-strip{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+  .status-strip button{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;padding:7px 13px;border-radius:99px;border:1.5px solid transparent}
+  .status-strip button .n{font-family:'Space Grotesk',sans-serif;font-weight:700}
+  .status-strip button[aria-pressed="true"]{border-color:currentColor}
+  .status-strip button:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+ 
+  .banner{border-radius:8px;padding:14px 18px;display:flex;gap:12px;align-items:flex-start;margin-bottom:16px}
+  .banner.alert{background:var(--danger-bg);border:1px solid var(--danger-bd)}
+  .banner.info{background:var(--info-bg)}
+  .banner.warn{background:var(--warn-bg);border:1px solid var(--warn-bd)}
+  .banner-title{font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px}
+  .banner.alert .banner-title{color:var(--danger-tx)}
+  .banner.info .banner-title{color:var(--info-tx)}
+  .banner.warn .banner-title{color:var(--warn-tx)}
+  .banner p{margin:0;font-size:13px;line-height:1.55;color:var(--text)}
+  .banner svg{flex-shrink:0;margin-top:2px}
+  .banner ul{margin:6px 0 0 0;padding-left:18px;font-size:12.5px;line-height:1.6;color:var(--text)}
+ 
+  details.quality{background:var(--panel);border:1px solid var(--border);border-radius:8px;margin-bottom:16px;box-shadow:var(--shadow)}
+  details.quality summary{cursor:pointer;list-style:none;padding:13px 18px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:8px}
+  details.quality summary::-webkit-details-marker{display:none}
+  details.quality summary .chev{transition:transform .15s;margin-left:auto;color:var(--muted)}
+  details.quality[open] summary .chev{transform:rotate(180deg)}
+  details.quality .qbody{padding:0 18px 16px 18px;font-size:12.5px;line-height:1.6;color:var(--muted)}
+  details.quality .qbody ul{margin:6px 0;padding-left:18px}
+  details.quality .qbody b{color:var(--text)}
+ 
+  section.card{background:var(--panel);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow);margin-bottom:18px;overflow:hidden}
+  .card-head{padding:16px 18px 12px 18px;border-bottom:1px solid var(--border);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px}
+  .card-title{font-size:15px;font-weight:700}
+  .card-title-sub{font-size:12px;color:var(--muted);margin-top:2px}
+ 
+  .controls{padding:14px 18px;display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;border-bottom:1px solid var(--border);background:rgba(0,0,0,.012)}
+  .field{display:flex;flex-direction:column;gap:3px}
+  .field label{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.03em}
+  select,input[type="search"]{font-family:inherit;font-size:13.5px;padding:7px 10px;border:1px solid var(--border);border-radius:6px;background:var(--panel);color:var(--text);min-height:36px}
+  input[type="search"]{min-width:190px}
+  .reset-btn{font-family:inherit;font-size:12.5px;font-weight:600;padding:7px 12px;border-radius:6px;border:1px solid var(--border);background:var(--panel);color:var(--muted);cursor:pointer;min-height:36px}
+  .result-count{margin-left:auto;font-size:12.5px;color:var(--muted);align-self:center}
+ 
+  .table-wrap{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:13px;min-width:760px}
+  thead th{position:sticky;top:0;background:var(--panel);z-index:1}
+  th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap}
+  th{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+  th button{all:unset;display:flex;align-items:center;gap:5px;cursor:pointer;font:inherit;color:inherit;letter-spacing:inherit;text-transform:inherit}
+  th button:focus-visible{outline:2px solid var(--navy);outline-offset:2px;border-radius:3px}
+  td.num{text-align:right;font-variant-numeric:tabular-nums}
+  tbody tr.main-row{cursor:pointer}
+  tbody tr.main-row:hover{background:rgba(22,49,79,.035)}
+  :root[data-theme="dark"] tbody tr.main-row:hover{background:rgba(255,255,255,.03)}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) tbody tr.main-row:hover{background:rgba(255,255,255,.03)}}
+  .status-pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;padding:3px 9px;border-radius:99px;white-space:nowrap}
+  .status-pill .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+  .missing{color:var(--muted);font-style:italic}
+  .arrow{font-size:10px;opacity:.6}
+  .arrow.active{opacity:1;color:var(--amber-2)}
+  .empty-row td{text-align:center;color:var(--muted);padding:26px;font-style:italic}
+  .chev-btn{all:unset;cursor:pointer;display:inline-flex;padding:3px;border-radius:4px;color:var(--muted);transition:transform .15s}
+  .chev-btn:focus-visible{outline:2px solid var(--navy);outline-offset:1px}
+  .chev-btn.open{transform:rotate(90deg)}
+  .flag{color:var(--amber-ink);cursor:help}
+ 
+  tr.detail-row td{background:rgba(22,49,79,.02);white-space:normal;padding:0}
+  :root[data-theme="dark"] tr.detail-row td{background:rgba(255,255,255,.015)}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) tr.detail-row td{background:rgba(255,255,255,.015)}}
+  .detail-inner{padding:16px 20px 18px 20px}
+  .detail-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px 18px;margin-bottom:12px}
+  .dstat{font-size:12px}
+  .dstat .k{color:var(--muted);display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px}
+  .dstat .v{font-weight:600;color:var(--text)}
+  .detail-section-title{font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:14px 0 6px 0}
+  .detail-note{font-size:12px;line-height:1.5;color:var(--text);background:var(--warn-bg);color:var(--warn-tx);border-radius:6px;padding:8px 11px;margin-top:8px}
+  .detail-usulan{font-size:12.5px;line-height:1.55;white-space:pre-line;background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:9px 12px;margin-top:4px}
+  details.sk{margin-top:8px;font-size:12px}
+  details.sk summary{cursor:pointer;color:var(--muted);font-weight:600}
+  details.sk pre{white-space:pre-wrap;font-family:inherit;font-size:11.5px;color:var(--muted);margin:6px 0 0 0}
+ 
+  .completeness{padding:12px 18px;display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--muted);border-top:1px solid var(--border);flex-wrap:wrap}
+  .bar-track{flex:1;max-width:220px;height:7px;background:var(--border);border-radius:99px;overflow:hidden}
+  .bar-fill{height:100%;background:var(--amber);border-radius:99px}
+ 
+  .tips{padding:15px 18px}
+  .tips-grid{display:grid;grid-template-columns:1fr;gap:10px}
+  @media(min-width:640px){.tips-grid{grid-template-columns:repeat(3,1fr)}}
+  .tip{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;line-height:1.5;color:var(--muted)}
+  .tip svg{flex-shrink:0;margin-top:2px}
+ 
+  footer{padding:18px 0 30px 0;font-size:12px;line-height:1.6;color:var(--muted)}
+  footer b{color:var(--text)}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+</style>
+</head>
+<body>
+ 
+<header class="top">
+  <div class="wrap">
+    <div class="eyebrow">Kementerian PPN/Bappenas &middot; Direktorat Pembangunan Indonesia Barat</div>
+    <h1>Pantau Perkembangan Dampak Bencana</h1>
+    <div class="badge-row">
+      <span class="badge">INDONESIA BAGIAN BARAT</span>
+      <span class="sub" id="dataAsOf">Data lengkap 52 kab/kota &middot; Desember 2025</span>
+    </div>
+  </div>
+</header>
+ 
+<main class="wrap">
+  <p class="lead">Bencana banjir bandang berdampak luas dan lintas wilayah administrasi di <b>Aceh, Sumatera Utara, dan Sumatera Barat</b>. Halaman ini menata ulang rekap 52 kabupaten/kota terdampak: angka terbaca penuh, data kosong diberi label jujur, dan setiap kab/kota bisa dibuka untuk melihat rincian lengkap.</p>
+ 
+  <!-- KPI STRIP -->
+  <div class="kpi-grid" id="kpiGrid"></div>
+ 
+  <!-- STATUS STRIP -->
+  <div class="status-strip" id="statusStrip" role="group" aria-label="Filter cepat berdasarkan status darurat"></div>
+ 
+  <!-- ALERT -->
+  <div class="banner alert" role="note">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8A3B1A" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><polygon points="12 3 22 20 2 20"></polygon><line x1="12" y1="10" x2="12" y2="15"></line><circle cx="12" cy="17.3" r="1" fill="#8A3B1A" stroke="none"></circle></svg>
+    <div>
+      <div class="banner-title">Perlu ditindaklanjuti</div>
+      <p id="alertText"></p>
+    </div>
+  </div>
+ 
+  <!-- DATA QUALITY -->
+  <details class="quality">
+    <summary>Catatan kualitas data (baca sebelum memakai angka ini lebih lanjut)
+      <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </summary>
+    <div class="qbody" id="qualityBody"></div>
+  </details>
+ 
+  <!-- TABLE -->
+  <section class="card">
+    <div class="controls">
+      <div class="field">
+        <label for="fProvinsi">Provinsi</label>
+        <select id="fProvinsi"><option value="">Semua provinsi</option></select>
+      </div>
+      <div class="field">
+        <label for="fStatus">Status darurat</label>
+        <select id="fStatus"><option value="">Semua status</option></select>
+      </div>
+      <div class="field">
+        <label for="fSearch">Cari kab/kota</label>
+        <input type="search" id="fSearch" placeholder="mis. Solok">
+      </div>
+      <button class="reset-btn" id="resetBtn" type="button">Reset filter</button>
+      <span class="result-count" id="resultCount"></span>
+    </div>
+ 
+    <div class="card-head" style="border-top:none">
+      <div>
+        <div class="card-title">Rekap Dampak Bencana Menurut Kabupaten/Kota di Indonesia Bagian Barat</div>
+        <div class="card-title-sub">Klik baris untuk membuka rincian &middot; klik judul kolom untuk mengurutkan &middot; 52 dari 52 kab/kota</div>
+      </div>
+    </div>
+ 
+    <div class="table-wrap">
+      <table id="tbl">
+        <thead>
+          <tr>
+            <th style="width:28px"></th>
+            <th><button data-sort="provinsi">Provinsi <span class="arrow" data-arrow="provinsi">&#8597;</span></button></th>
+            <th><button data-sort="kabkota">Kab./Kota <span class="arrow" data-arrow="kabkota">&#8597;</span></button></th>
+            <th><button data-sort="status_darurat">Status Darurat <span class="arrow" data-arrow="status_darurat">&#8597;</span></button></th>
+            <th><button data-sort="korban_terdampak">Korban Terdampak <span class="arrow" data-arrow="korban_terdampak">&#8597;</span></button></th>
+            <th><button data-sort="estimasi_kerugian">Estimasi Kerugian (Rp) <span class="arrow" data-arrow="estimasi_kerugian">&#8597;</span></button></th>
+            <th><button data-sort="total_usulan">Usulan <span class="arrow" data-arrow="total_usulan">&#8597;</span></button></th>
+            <th>Kebutuhan Usulan (Rp)</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+ 
+    <div class="completeness">
+      <span id="complLabel"></span>
+      <span class="bar-track"><span class="bar-fill" id="complBar"></span></span>
+    </div>
+  </section>
+ 
+  <!-- WHAT CHANGED -->
+  <section class="card">
+    <div class="tips">
+      <div class="card-title" style="margin-bottom:10px">Perbaikan pada versi ini</div>
+      <div class="tips-grid">
+        <div class="tip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C97F1E" stroke-width="3"><circle cx="12" cy="12" r="10"></circle><polyline points="7 12.5 10.5 16 17 8.5"></polyline></svg><span>Seluruh 52 kab/kota ditampilkan dengan angka penuh &mdash; tidak ada lagi kolom yang terpotong.</span></div>
+        <div class="tip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C97F1E" stroke-width="3"><circle cx="12" cy="12" r="10"></circle><polyline points="7 12.5 10.5 16 17 8.5"></polyline></svg><span>Data kosong, format tidak baku (KK, "&plusmn;", "Nihil"), dan satuan berbeda ditandai jujur, bukan disembunyikan.</span></div>
+        <div class="tip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C97F1E" stroke-width="3"><circle cx="12" cy="12" r="10"></circle><polyline points="7 12.5 10.5 16 17 8.5"></polyline></svg><span>Filter provinsi/status, pencarian, urutkan kolom, dan buka rincian per kab/kota &mdash; langsung di halaman ini.</span></div>
+      </div>
+    </div>
+  </section>
+ 
+  <footer>
+    <p><b>Sumber data:</b> <span id="footerFile"></span>, dihimpun Direktorat Pembangunan Indonesia Barat, Kementerian PPN/Bappenas. Estimasi kerugian bersifat sementara dan dapat berubah seiring verifikasi lapangan.</p>
+    <p>Dibangun dari data lengkap 52 kab/kota (bukan sampel). Nilai yang tidak baku di sumber (satuan KK, tanda &ldquo;&plusmn;&rdquo;, sel kosong) ditandai apa adanya, bukan diperkirakan.</p>
+  </footer>
+</main>
+ 
+<script>
+const DATA = {"records": [{"provinsi": "Aceh", "kabkota": "Aceh Singkil", "luas_ha": 3826.51, "kecamatan": 8, "desa": 57, "korban_terdampak": 40780.0, "korban_terdampak_note": null, "korban_meninggal": null, "korban_hilang": null, "korban_luka": 0, "korban_mengungsi": null, "lokasi_pengungsi": null, "rumah_ibadah": 15, "pendidikan": 35, "kesehatan": 12, "rumah_warga": 3431, "gedung_pemerintahan": null, "pasar": null, "jalan": 20, "jembatan": 8, "irigasi": null, "bendungan": null, "ternak": 238, "sawah_ha": 218.0, "kebun_ha": 44.0, "estimasi_kerugian": 0.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Transisi Darurat", "batas_waktu": "2026-03-24", "keterangan_status": null, "no_sk": "300.2.3/391/2025", "sk": {"state": "lengkap", "note": null}, "data_notes": []}, {"provinsi": "Aceh", "kabkota": "Aceh Selatan", "luas_ha": 1894.11, "kecamatan": 6, "desa": 23, "korban_terdampak": 5940.0, "korban_terdampak_note": null, "korban_meninggal": null, "korban_hilang": null, "korban_luka": 0, "korban_mengungsi": null, "lokasi_pengungsi": null, "rumah_ibadah": 10, "pendidikan": 16, "kesehatan": null, "rumah_warga": 873, "gedung_pemerintahan": null, "pasar": null, "jalan": 6, "jembatan": 35, "irigasi": null, "bendungan": null, "ternak": 81, "sawah_ha": 460.0, "kebun_ha": 433.0, "estimasi_kerugian": 0.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Transisi Darurat", "batas_waktu": "2026-03-11", "keterangan_status": null, "no_sk": "768 TAHUN 2025", "sk": {"state": "lengkap", "note": null}, "data_notes": []}, {"provinsi": "Aceh", "kabkota": "Aceh Tenggara", "luas_ha": 927.0, "kecamatan": 14, "desa": 112, "korban_terdampak": 16097.0, "korban_terdampak_note": null, "korban_meninggal": 14, "korban_hilang": 1, "korban_luka": 3, "korban_mengungsi": null, "lokasi_pengungsi": null, "rumah_ibadah": 18, "pendidikan": 19, "kesehatan": 19, "rumah_warga": 2018, "gedung_pemerintahan": null, "pasar": null, "jalan": 24, "jembatan": 45, "irigasi": null, "bendungan": null, "ternak": 155, "sawah_ha": 284.0, "kebun_ha": 1318.0, "estimasi_kerugian": 0.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Transisi Darurat", "batas_waktu": "2026-03-10", "keterangan_status": null, "no_sk": "300.2.1/288/2025", "sk": {"state": "lengkap", "note": null}, "data_notes": []}, {"provinsi": "Aceh", "kabkota": "Aceh Timur", "luas_ha": 29707.22, "kecamatan": 24, "desa": 426, "korban_terdampak": 290582.0, "korban_terdampak_note": null, "korban_meninggal": 58, "korban_hilang": null, "korban_luka": 0, "korban_mengungsi": 991, "lokasi_pengungsi": 13, "rumah_ibadah": 33, "pendidikan": 199, "kesehatan": 25, "rumah_warga": 25133, "gedung_pemerintahan": 20, "pasar": null, "jalan": 146, "jembatan": 44, "irigasi": null, "bendungan": null, "ternak": 3152, "sawah_ha": 10902.0, "kebun_ha": 17893.0, "estimasi_kerugian": 0.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Transisi Darurat", "batas_waktu": "2026-04-05", "keterangan_status": null, "no_sk": "360/622/2026", "sk": {"state": "lengkap", "note": null}, "data_notes": []}, {"provinsi": "Aceh", "kabkota": "Aceh Tengah", "luas_ha": 1524.95, "kecamatan": 11, "desa": 295, "korban_terdampak": 234710.0, "korban_terdampak_note": null, "korban_meninggal": 25, "korban_hilang": 3, "korban_luka": 58, "korban_mengungsi": null, "lokasi_pengungsi": 22, "rumah_ibadah": 43, "pendidikan": 47, "kesehatan": 3, "rumah_warga": 4221, "gedung_pemerintahan": 15, "pasar": null, "jalan": 119, "jembatan": 66, "irigasi": null, "bendungan": null, "ternak": 132, "sawah_ha": 2765.0, "kebun_ha": 13942.0, "estimasi_kerugian": 0.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Tanggap Darurat", "batas_waktu": "2026-01-22", "keterangan_status": null, "no_sk": "360/1/BPBD/2025", "sk": {"state": "lengkap", "note": null}, "data_notes": []}, {"provinsi": "Aceh", "kabkota": "Aceh Barat", "luas_ha": 8549.0, "kecamatan": 11, "desa": 147, "korban_terdampak": 39890.0, "korban_terdampak_note": null, "korban_meninggal": null, "korban_hilang": null, "korban_luka": 0, "korban_mengungsi": null, "lokasi_pengungsi": null, "rumah_ibadah": 8, "pendidikan": 34, "kesehatan": null, "rumah_warga": 123, "gedung_pemerintahan": 5, "pasar": null, "jalan": 11, "jembatan": 20, "irigasi": null, "bendungan": null, "ternak": 142, "sawah_ha": 2489.0, "kebun_ha": 1395.0, "estimasi_kerugian": 0.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Transisi Darurat", "batas_waktu": "2026-01-31", "keterangan_status": null, "no_sk": "836 TAHUN 2025", "sk": {"state": "lengkap", "note": null}, "data_notes": []}, {"provinsi": "Aceh", "kabkota": "Aceh Besar", "luas_ha": 8588.54, "kecamatan": 10, "desa": 44, "korban_terdampak": 3054.0, "korban_terdampak_note": null, "korban_meninggal": null, "korban_hilang": null, "korban_luka": 0, "korban_mengungsi": null, "lokasi_pengungsi": null, "rumah_ibadah": 1, "pendidikan": 8, "kesehatan": null, "rumah_warga": null, "gedung_pemerintahan": null, "pasar": null, "jalan": 1, "jembatan": 2, "irigasi": null, "bendungan": null, "ternak": null, "sawah_ha": 2739.0, "kebun_ha": 4080.0, "estimasi_kerugian": 0.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Transisi Darurat", "batas_waktu": "2026-03-25", "keterangan_status": null, "no_sk": "1723 TAHUN 2025", "sk": {"state": "lengkap", "note": null}, "data_notes": []}, {"provinsi": "Aceh", "kabkota": "Pidie", "luas_ha": 11551.85, "kecamatan": 16, "desa": 217, "korban_terdampak": 77646.0, "korban_terdampak_note": null, "korban_meninggal": 1, "korban_hilang": null, "korban_luka": 0, "korban_mengungsi": null, "lokasi_pengungsi": null, "rumah_ibadah": 5, "pendidikan": 74, "kesehatan": 10, "rumah_warga": 5552, "gedung_pemerintahan": 31, "pasar": null, "jalan": 26, "jembatan": 34, "irigasi": null, "bendungan": null, "ternak": 363, "sawah_ha": 502.0, "kebun_ha": 735.0, "estimasi_kerugian": 0.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Transisi Darurat", "batas_waktu": "2026-07-06", "keterangan_status": null, "no_sk": "362/33/KEP.40/2026", "sk": {"state": "lengkap", "note": null}, "data_notes": []}, {"provinsi": "Aceh", "kabkota": "Bireuen", "luas_ha": 7835.6, "kecamatan": 17, "desa": 78, "korban_terdampak": 473042.0, "korban_terdampak_note": null, "korban_meninggal": 40, "korban_hilang": 3, "korban_luka": 4, "korban_mengungsi": 1277, "lokasi_pengungsi": 25, "rumah_ibadah": 22, "pendidikan": 273, "kesehatan": 7, "rumah_warga": 23348, "gedung_pemerintahan": 1, "pasar": null, "jalan": 83, "jembatan": 43, "irigasi": null, "bendungan": null, "ternak": 3249, "sawah_ha": 4763.0, "kebun_ha": 7404.0, "estimasi_kerugian": 0.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Transisi Darurat", "batas_waktu": "2026-04-06", "keterangan_status": null, "no_sk": "300.2.2/9 TAHUN 2026", "sk": {"state": "lengkap", "note": null}, "data_notes": []}, {"provinsi": "Aceh", "kabkota": "Aceh Utara", "luas_ha": 34807.52, "kecamatan": 27, "desa": 714, "korban_terdampak": 433064.0, "korban_terdampak_note": null, "korban_meninggal": 248, "korban_hilang": 3, "korban_luka": 2015, "korban_mengungsi": 506, "lokasi_pengungsi": 94, "rumah_ibadah": 91, "pendidikan": 456, "kesehatan": 20, "rumah_warga": 98985, "gedung_pemerintahan": 17, "pasar": null, "jalan": 201, "jembatan": 76, "irigasi": null, "bendungan": null, "ternak": 51990, "sawah_ha": 18045.0, "kebun_ha": 32773.0, "estimasi_kerugian": 0.0, "total_usulan": 7, "total_kebutuhan": 10219924000.0, "total_kebutuhan_text": null, "daftar_usulan": "SPAM", "status_darurat": "Transisi Darurat", "batas_waktu": "2026-02-05", "keterangan_status": null, "no_sk": "360/1/2026", "sk": {"state": "lengkap", "note": null}, "data_notes": []}, {"provinsi": "Aceh", "kabkota": "Gayo Lues", "luas_ha": 1190.17, "kecamatan": 11, "desa": 142, "korban_terdampak": 109115.0, "korban_terdampak_note": null, "korban_meninggal": 5, "korban_hilang": null, "korban_luka": 0, "korban_mengungsi": 2433, "lokasi_pengungsi": 7, "rumah_ibadah": 24, "pendidikan": 19, "kesehatan": 2, "rumah_warga": 4018, "gedung_pemerintahan": 2, "pasar": null, "jalan": 72, "jembatan": 113, "irigasi": null, "bendungan": null, "ternak": 333, "sawah_ha": 1871.0, "kebun_ha": 1301.0, "estimasi_kerugian": 0.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Tanggap Darurat", "batas_waktu": "2026-01-22", "keterangan_status": null, "no_sk": "100.3.3.2/2/2026", "sk": {"state": "lengkap", "note": null}, "data_notes": []}, {"provinsi": "Aceh", "kabkota": "Aceh Tamiang", "luas_ha": 16663.04, "kecamatan": 12, "desa": 209, "korban_terdampak": 295174.0, "korban_terdampak_note": null, "korban_meninggal": 101, "korban_hilang": null, "korban_luka": 0, "korban_mengungsi": 825, "lokasi_pengungsi": 21, "rumah_ibadah": 285, "pendidikan": 357, "kesehatan": 16, "rumah_warga": 75088, "gedung_pemerintahan": 49, "pasar": null, "jalan": 315, "jembatan": 31, "irigasi": null, "bendungan": null, "ternak": 8563, "sawah_ha": 8161.0, "kebun_ha": 10347.0, "estimasi_kerugian": 0.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Tanggap Darurat", "batas_waktu": "2026-01-20", "keterangan_status": null, "no_sk": "100.3.3.2/1025/2025", "sk": {"state": "lengkap", "note": null}, "data_notes": []}, {"provinsi": "Aceh", "kabkota": "Nagan Raya", "luas_ha": 5180.9, "kecamatan": 4, "desa": 29, "korban_terdampak": 25620.0, "korban_terdampak_note": null, "korban_meninggal": 1, "korban_hilang": 3, "korban_luka": 1476, "korban_mengungsi": 2197, "lokasi_pengungsi": 6, "rumah_ibadah": 14, "pendidikan": 37, "kesehatan": 15, "rumah_warga": 979, "gedung_pemerintahan": 1, "pasar": null, "jalan": 5, "jembatan": 4, "irigasi": null, "bendungan": null, "ternak": 253, "sawah_ha": 15.0, "kebun_ha": 2007.0, "estimasi_kerugian": 0.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Tanggap Darurat", "batas_waktu": "2026-01-21", "keterangan_status": null, "no_sk": "300.2.1/05/Kpts/2026", "sk": {"state": "lengkap", "note": null}, "data_notes": []}, {"provinsi": "Aceh", "kabkota": "Bener Meriah", "luas_ha": 1299.19, "kecamatan": 10, "desa": 233, "korban_terdampak": 183043.0, "korban_terdampak_note": null, "korban_meninggal": 30, "korban_hilang": 14, "korban_luka": 12, "korban_mengungsi": 1601, "lokasi_pengungsi": 39, "rumah_ibadah": 5, "pendidikan": 68, "kesehatan": null, "rumah_warga": 1797, "gedung_pemerintahan": null, "pasar": null, "jalan": 358, "jembatan": 11, "irigasi": null, "bendungan": null, "ternak": 119, "sawah_ha": 165.0, "kebun_ha": 2733.0, "estimasi_kerugian": 0.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Transisi Darurat", "batas_waktu": "2026-04-06", "keterangan_status": null, "no_sk": "360/03/SK/2026", "sk": {"state": "lengkap", "note": null}, "data_notes": []}, {"provinsi": "Aceh", "kabkota": "Pidie Jaya", "luas_ha": 3244.43, "kecamatan": 8, "desa": 158, "korban_terdampak": 82922.0, "korban_terdampak_note": null, "korban_meninggal": 30, "korban_hilang": null, "korban_luka": 1823, "korban_mengungsi": null, "lokasi_pengungsi": 7, "rumah_ibadah": 20, "pendidikan": 120, "kesehatan": 11, "rumah_warga": 4573, "gedung_pemerintahan": 20, "pasar": null, "jalan": 121, "jembatan": 27, "irigasi": null, "bendungan": null, "ternak": 8411, "sawah_ha": 1073.0, "kebun_ha": 676.0, "estimasi_kerugian": 0.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Tanggap Darurat", "batas_waktu": "2025-12-31", "keterangan_status": null, "no_sk": "504 TAHUN 2025", "sk": {"state": "belum_lengkap", "note": null}, "data_notes": []}, {"provinsi": "Aceh", "kabkota": "Kota Langsa", "luas_ha": 1747.03, "kecamatan": 5, "desa": 66, "korban_terdampak": 160045.0, "korban_terdampak_note": null, "korban_meninggal": 5, "korban_hilang": null, "korban_luka": 0, "korban_mengungsi": null, "lokasi_pengungsi": null, "rumah_ibadah": 21, "pendidikan": 61, "kesehatan": 6, "rumah_warga": 2625, "gedung_pemerintahan": 36, "pasar": null, "jalan": 879, "jembatan": null, "irigasi": null, "bendungan": null, "ternak": 410, "sawah_ha": 1025.0, "kebun_ha": 2066.0, "estimasi_kerugian": 0.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Transisi Darurat", "batas_waktu": "2026-01-22", "keterangan_status": null, "no_sk": "647/300.2.1/2025", "sk": {"state": "lengkap", "note": null}, "data_notes": []}, {"provinsi": "Aceh", "kabkota": "Kota Lhokseumawe", "luas_ha": 1551.07, "kecamatan": 4, "desa": 68, "korban_terdampak": 100519.0, "korban_terdampak_note": null, "korban_meninggal": 5, "korban_hilang": null, "korban_luka": 4, "korban_mengungsi": null, "lokasi_pengungsi": null, "rumah_ibadah": 9, "pendidikan": 111, "kesehatan": null, "rumah_warga": 1428, "gedung_pemerintahan": 30, "pasar": null, "jalan": 106, "jembatan": 16, "irigasi": null, "bendungan": null, "ternak": 273, "sawah_ha": 1101.0, "kebun_ha": 1209.0, "estimasi_kerugian": 0.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Transisi Darurat", "batas_waktu": "2026-03-25", "keterangan_status": null, "no_sk": "100.3.3.3-572 tahun 2025", "sk": {"state": "lengkap", "note": null}, "data_notes": []}, {"provinsi": "Aceh", "kabkota": "Kota Subulussalam", "luas_ha": 4217.54, "kecamatan": 5, "desa": 28, "korban_terdampak": 12824.0, "korban_terdampak_note": null, "korban_meninggal": 2, "korban_hilang": null, "korban_luka": 0, "korban_mengungsi": null, "lokasi_pengungsi": null, "rumah_ibadah": 17, "pendidikan": 8, "kesehatan": null, "rumah_warga": 1029, "gedung_pemerintahan": null, "pasar": null, "jalan": 14, "jembatan": 24, "irigasi": null, "bendungan": null, "ternak": 67, "sawah_ha": 74.0, "kebun_ha": 20.0, "estimasi_kerugian": 0.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Transisi Darurat", "batas_waktu": "2026-03-09", "keterangan_status": null, "no_sk": "100.3.3.3/221/2025", "sk": {"state": "lengkap", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Utara", "kabkota": "Nias", "luas_ha": null, "kecamatan": 2, "desa": 3, "korban_terdampak": 20.0, "korban_terdampak_note": null, "korban_meninggal": 2, "korban_hilang": 0, "korban_luka": 0, "korban_mengungsi": 20, "lokasi_pengungsi": 0, "rumah_ibadah": null, "pendidikan": null, "kesehatan": null, "rumah_warga": null, "gedung_pemerintahan": null, "pasar": null, "jalan": null, "jembatan": null, "irigasi": null, "bendungan": null, "ternak": null, "sawah_ha": null, "kebun_ha": null, "estimasi_kerugian": null, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Transisi Darurat", "batas_waktu": null, "keterangan_status": null, "no_sk": null, "sk": {"state": "belum_dicek", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Utara", "kabkota": "Mandailing Natal", "luas_ha": 6046.65, "kecamatan": 18, "desa": 62, "korban_terdampak": 13072.0, "korban_terdampak_note": null, "korban_meninggal": 0, "korban_hilang": 0, "korban_luka": 0, "korban_mengungsi": 0, "lokasi_pengungsi": 24, "rumah_ibadah": 14, "pendidikan": 84, "kesehatan": 26, "rumah_warga": 175, "gedung_pemerintahan": 2, "pasar": null, "jalan": 112, "jembatan": null, "irigasi": 1, "bendungan": null, "ternak": null, "sawah_ha": 4498.78, "kebun_ha": null, "estimasi_kerugian": 139471186000.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Transisi Darurat", "batas_waktu": "2025-12-31", "keterangan_status": null, "no_sk": "360/1088/K/2025", "sk": {"state": "belum_dicek", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Utara", "kabkota": "Tapanuli Selatan", "luas_ha": 3997.94, "kecamatan": 11, "desa": 69, "korban_terdampak": 279974.0, "korban_terdampak_note": null, "korban_meninggal": 88, "korban_hilang": 30, "korban_luka": 160, "korban_mengungsi": 4908, "lokasi_pengungsi": 28, "rumah_ibadah": 68, "pendidikan": 21, "kesehatan": 0, "rumah_warga": 3186, "gedung_pemerintahan": 0, "pasar": null, "jalan": 330, "jembatan": null, "irigasi": 55, "bendungan": null, "ternak": null, "sawah_ha": 3550.0, "kebun_ha": 357.0, "estimasi_kerugian": 167839736000.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Transisi Darurat", "batas_waktu": "2025-12-31", "keterangan_status": null, "no_sk": "100.3.3.2/634/KPTS/2025", "sk": {"state": "belum_dicek", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Utara", "kabkota": "Tapanuli Tengah", "luas_ha": 3037.93, "kecamatan": 15, "desa": 21, "korban_terdampak": 296453.0, "korban_terdampak_note": null, "korban_meninggal": 133, "korban_hilang": 38, "korban_luka": 11, "korban_mengungsi": 5555, "lokasi_pengungsi": 85, "rumah_ibadah": 34, "pendidikan": 61, "kesehatan": 7, "rumah_warga": 3245, "gedung_pemerintahan": 0, "pasar": 0, "jalan": 13247, "jembatan": null, "irigasi": 3, "bendungan": null, "ternak": null, "sawah_ha": null, "kebun_ha": null, "estimasi_kerugian": 548072380188.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Transisi Darurat", "batas_waktu": "2025-12-23", "keterangan_status": null, "no_sk": null, "sk": {"state": "belum_dicek", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Utara", "kabkota": "Tapanuli Utara", "luas_ha": 1759.29, "kecamatan": 9, "desa": 34, "korban_terdampak": 14033.0, "korban_terdampak_note": null, "korban_meninggal": 36, "korban_hilang": 2, "korban_luka": 3, "korban_mengungsi": 1197, "lokasi_pengungsi": 3, "rumah_ibadah": 0, "pendidikan": 16, "kesehatan": 6, "rumah_warga": 1544, "gedung_pemerintahan": 0, "pasar": null, "jalan": 330, "jembatan": 18, "irigasi": 76, "bendungan": null, "ternak": null, "sawah_ha": 1367.0, "kebun_ha": null, "estimasi_kerugian": 182568476579.0, "total_usulan": 138, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": "Rekonstruksi Jalan, Pembangunan Jembatan, Pembangunan Daerah Irigasi", "status_darurat": "Transisi Darurat", "batas_waktu": "2026-03-30", "keterangan_status": null, "no_sk": "648", "sk": {"state": "belum_dicek", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Utara", "kabkota": "Asahan", "luas_ha": 3111.77, "kecamatan": 8, "desa": 26, "korban_terdampak": 0.0, "korban_terdampak_note": null, "korban_meninggal": 0, "korban_hilang": 0, "korban_luka": null, "korban_mengungsi": 0, "lokasi_pengungsi": 0, "rumah_ibadah": 0, "pendidikan": 0, "kesehatan": 0, "rumah_warga": 874, "gedung_pemerintahan": 0, "pasar": null, "jalan": 28, "jembatan": null, "irigasi": null, "bendungan": null, "ternak": null, "sawah_ha": null, "kebun_ha": null, "estimasi_kerugian": 302200000000.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Tidak Darurat", "batas_waktu": null, "keterangan_status": null, "no_sk": null, "sk": {"state": "belum_dicek", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Utara", "kabkota": "Deli Serdang", "luas_ha": 13698.12, "kecamatan": 17, "desa": 179, "korban_terdampak": 17.0, "korban_terdampak_note": null, "korban_meninggal": 0, "korban_hilang": 0, "korban_luka": 0, "korban_mengungsi": 70062, "lokasi_pengungsi": 0, "rumah_ibadah": 28, "pendidikan": 169, "kesehatan": 22, "rumah_warga": 351, "gedung_pemerintahan": 0, "pasar": null, "jalan": 158, "jembatan": null, "irigasi": null, "bendungan": null, "ternak": null, "sawah_ha": null, "kebun_ha": null, "estimasi_kerugian": 148339378000.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Transisi Darurat", "batas_waktu": "2026-06-11", "keterangan_status": null, "no_sk": "643.A", "sk": {"state": "belum_dicek", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Utara", "kabkota": "Langkat", "luas_ha": 13152.92, "kecamatan": 19, "desa": 202, "korban_terdampak": 15.0, "korban_terdampak_note": null, "korban_meninggal": 0, "korban_hilang": 0, "korban_luka": 0, "korban_mengungsi": 25135, "lokasi_pengungsi": 52, "rumah_ibadah": 36, "pendidikan": 121, "kesehatan": 2, "rumah_warga": 6983, "gedung_pemerintahan": 3, "pasar": null, "jalan": 114, "jembatan": null, "irigasi": null, "bendungan": null, "ternak": null, "sawah_ha": null, "kebun_ha": null, "estimasi_kerugian": null, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Transisi Darurat", "batas_waktu": "2025-12-23", "keterangan_status": null, "no_sk": "360-08/K/2025", "sk": {"state": "belum_dicek", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Utara", "kabkota": "Nias Selatan", "luas_ha": null, "kecamatan": 27, "desa": 45, "korban_terdampak": 1.0, "korban_terdampak_note": null, "korban_meninggal": 1, "korban_hilang": 0, "korban_luka": 0, "korban_mengungsi": 0, "lokasi_pengungsi": 0, "rumah_ibadah": 1, "pendidikan": 6, "kesehatan": 7, "rumah_warga": 95, "gedung_pemerintahan": 0, "pasar": null, "jalan": 13, "jembatan": null, "irigasi": null, "bendungan": null, "ternak": null, "sawah_ha": null, "kebun_ha": null, "estimasi_kerugian": 80920000000.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Transisi Darurat", "batas_waktu": "2026-06-24", "keterangan_status": null, "no_sk": "100.3.3.2/1193/2025", "sk": {"state": "belum_dicek", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Utara", "kabkota": "Humbang Hasundutan", "luas_ha": 1196.84, "kecamatan": 6, "desa": 60, "korban_terdampak": 10.0, "korban_terdampak_note": null, "korban_meninggal": 10, "korban_hilang": 1, "korban_luka": 0, "korban_mengungsi": 5868, "lokasi_pengungsi": 452, "rumah_ibadah": 0, "pendidikan": 5, "kesehatan": 3, "rumah_warga": 336, "gedung_pemerintahan": 0, "pasar": null, "jalan": 18, "jembatan": null, "irigasi": null, "bendungan": null, "ternak": null, "sawah_ha": 893.4, "kebun_ha": null, "estimasi_kerugian": 39907000000.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Transisi Darurat", "batas_waktu": "2025-12-31", "keterangan_status": null, "no_sk": "274 Tahun 2025", "sk": {"state": "belum_dicek", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Utara", "kabkota": "Pakpak Bharat", "luas_ha": 352.29, "kecamatan": null, "desa": null, "korban_terdampak": 2.0, "korban_terdampak_note": null, "korban_meninggal": null, "korban_hilang": null, "korban_luka": null, "korban_mengungsi": 0, "lokasi_pengungsi": 0, "rumah_ibadah": 4, "pendidikan": 0, "kesehatan": 0, "rumah_warga": 15, "gedung_pemerintahan": 2, "pasar": null, "jalan": 266, "jembatan": null, "irigasi": null, "bendungan": null, "ternak": null, "sawah_ha": null, "kebun_ha": null, "estimasi_kerugian": 50941348600.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Transisi Darurat", "batas_waktu": null, "keterangan_status": null, "no_sk": "188.45/12.15/695/26/2025", "sk": {"state": "belum_dicek", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Utara", "kabkota": "Serdang Bedagai", "luas_ha": 9497.89, "kecamatan": null, "desa": null, "korban_terdampak": 0.0, "korban_terdampak_note": null, "korban_meninggal": null, "korban_hilang": null, "korban_luka": null, "korban_mengungsi": 228, "lokasi_pengungsi": 5, "rumah_ibadah": 3, "pendidikan": 1, "kesehatan": 0, "rumah_warga": 90, "gedung_pemerintahan": 0, "pasar": 0, "jalan": 15, "jembatan": null, "irigasi": null, "bendungan": null, "ternak": null, "sawah_ha": null, "kebun_ha": null, "estimasi_kerugian": 210400000000.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Tidak Darurat", "batas_waktu": null, "keterangan_status": null, "no_sk": null, "sk": {"state": "belum_dicek", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Utara", "kabkota": "Batu Bara", "luas_ha": 4793.82, "kecamatan": 12, "desa": 98, "korban_terdampak": 0.0, "korban_terdampak_note": null, "korban_meninggal": null, "korban_hilang": null, "korban_luka": null, "korban_mengungsi": 540, "lokasi_pengungsi": 8, "rumah_ibadah": 0, "pendidikan": 5, "kesehatan": 0, "rumah_warga": 9347, "gedung_pemerintahan": 0, "pasar": null, "jalan": 20, "jembatan": null, "irigasi": null, "bendungan": null, "ternak": null, "sawah_ha": null, "kebun_ha": null, "estimasi_kerugian": 116711000000.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Transisi Darurat", "batas_waktu": "2026-06-05", "keterangan_status": null, "no_sk": "730/BPBD/2025", "sk": {"state": "belum_dicek", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Utara", "kabkota": "Kota Sibolga", "luas_ha": 14.48, "kecamatan": null, "desa": null, "korban_terdampak": 58.0, "korban_terdampak_note": null, "korban_meninggal": null, "korban_hilang": null, "korban_luka": null, "korban_mengungsi": 774, "lokasi_pengungsi": 7, "rumah_ibadah": 2, "pendidikan": 14, "kesehatan": 2, "rumah_warga": 1574, "gedung_pemerintahan": 4, "pasar": null, "jalan": 33, "jembatan": null, "irigasi": null, "bendungan": null, "ternak": null, "sawah_ha": null, "kebun_ha": null, "estimasi_kerugian": 77254000000.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Belum Ditetapkan", "batas_waktu": null, "keterangan_status": null, "no_sk": null, "sk": {"state": "belum_dicek", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Utara", "kabkota": "Kota Tebing Tinggi", "luas_ha": 84.25, "kecamatan": null, "desa": null, "korban_terdampak": 0.0, "korban_terdampak_note": null, "korban_meninggal": null, "korban_hilang": null, "korban_luka": null, "korban_mengungsi": 8391, "lokasi_pengungsi": 9, "rumah_ibadah": 32, "pendidikan": 0, "kesehatan": 0, "rumah_warga": 13, "gedung_pemerintahan": 0, "pasar": null, "jalan": 167, "jembatan": null, "irigasi": null, "bendungan": null, "ternak": null, "sawah_ha": null, "kebun_ha": null, "estimasi_kerugian": 42832540000.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Belum Ditetapkan", "batas_waktu": null, "keterangan_status": null, "no_sk": null, "sk": {"state": "belum_dicek", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Utara", "kabkota": "Kota Medan", "luas_ha": 753.13, "kecamatan": 15, "desa": 34, "korban_terdampak": 20.0, "korban_terdampak_note": null, "korban_meninggal": 12, "korban_hilang": 0, "korban_luka": 0, "korban_mengungsi": 0, "lokasi_pengungsi": 0, "rumah_ibadah": 5, "pendidikan": 4, "kesehatan": 0, "rumah_warga": 359, "gedung_pemerintahan": 0, "pasar": null, "jalan": 9, "jembatan": null, "irigasi": null, "bendungan": null, "ternak": null, "sawah_ha": null, "kebun_ha": null, "estimasi_kerugian": 14241580000.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Belum Ditetapkan", "batas_waktu": null, "keterangan_status": null, "no_sk": null, "sk": {"state": "belum_dicek", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Utara", "kabkota": "Kota Binjai", "luas_ha": 67.76, "kecamatan": 5, "desa": 37, "korban_terdampak": 8044.0, "korban_terdampak_note": "satuan KK (kepala keluarga), bukan jiwa — tidak dijumlahkan ke total", "korban_meninggal": null, "korban_hilang": null, "korban_luka": null, "korban_mengungsi": 0, "lokasi_pengungsi": 0, "rumah_ibadah": 10, "pendidikan": 3, "kesehatan": 0, "rumah_warga": 47, "gedung_pemerintahan": 0, "pasar": null, "jalan": 0, "jembatan": null, "irigasi": null, "bendungan": null, "ternak": null, "sawah_ha": null, "kebun_ha": null, "estimasi_kerugian": 1754500000.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Belum Ditetapkan", "batas_waktu": null, "keterangan_status": null, "no_sk": null, "sk": {"state": "belum_dicek", "note": null}, "data_notes": ["satuan KK (kepala keluarga), bukan jiwa — tidak dijumlahkan ke total"]}, {"provinsi": "Sumatera Utara", "kabkota": "Kota Padangsidimpuan", "luas_ha": 103.97, "kecamatan": null, "desa": null, "korban_terdampak": 1.0, "korban_terdampak_note": null, "korban_meninggal": null, "korban_hilang": null, "korban_luka": null, "korban_mengungsi": 0, "lokasi_pengungsi": 0, "rumah_ibadah": 3, "pendidikan": 0, "kesehatan": 0, "rumah_warga": 128, "gedung_pemerintahan": 0, "pasar": null, "jalan": 3, "jembatan": null, "irigasi": null, "bendungan": null, "ternak": null, "sawah_ha": null, "kebun_ha": null, "estimasi_kerugian": 6470000000.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Belum Ditetapkan", "batas_waktu": null, "keterangan_status": null, "no_sk": null, "sk": {"state": "belum_dicek", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Barat", "kabkota": "Kepulauan Mentawai", "luas_ha": 71.02, "kecamatan": null, "desa": null, "korban_terdampak": 7170.0, "korban_terdampak_note": null, "korban_meninggal": 0, "korban_hilang": 0, "korban_luka": 0, "korban_mengungsi": 455, "lokasi_pengungsi": null, "rumah_ibadah": 18, "pendidikan": 6, "kesehatan": 2, "rumah_warga": 2373, "gedung_pemerintahan": 8, "pasar": 0, "jalan": 4, "jembatan": 7, "irigasi": 0, "bendungan": 0, "ternak": 0, "sawah_ha": 0.0, "kebun_ha": 35.0, "estimasi_kerugian": 1725900000.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Transisi Darurat", "batas_waktu": "2026-02-28", "keterangan_status": null, "no_sk": "SK 100.3.3.2-423-2025\n      100.3.3.2-430-2025\n      100.3.3.2-445-2025", "sk": {"state": "lengkap", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Barat", "kabkota": "Pesisir Selatan", "luas_ha": 966.49, "kecamatan": 7, "desa": null, "korban_terdampak": 74523.0, "korban_terdampak_note": null, "korban_meninggal": 0, "korban_hilang": 0, "korban_luka": 0, "korban_mengungsi": 150, "lokasi_pengungsi": null, "rumah_ibadah": 2, "pendidikan": 89, "kesehatan": 26, "rumah_warga": 337, "gedung_pemerintahan": 12, "pasar": 1, "jalan": 23, "jembatan": 24, "irigasi": 106, "bendungan": 65, "ternak": 5561, "sawah_ha": 418.05, "kebun_ha": 169.85, "estimasi_kerugian": 517959625682.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Transisi Darurat", "batas_waktu": "2026-06-30", "keterangan_status": null, "no_sk": "SK 100.3.3.2/357/Kpts/BPT-PS/2025\n      100.3.3.2/377/Kpts/BPT-PS/2025\n      100.3.3.2/396/Kpts/BPT-PS/2025", "sk": {"state": "lengkap", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Barat", "kabkota": "Solok", "luas_ha": 0.26, "kecamatan": 12, "desa": 27, "korban_terdampak": 34900.0, "korban_terdampak_note": null, "korban_meninggal": 0, "korban_hilang": 0, "korban_luka": 0, "korban_mengungsi": 536, "lokasi_pengungsi": 5, "rumah_ibadah": 17, "pendidikan": 31, "kesehatan": 5, "rumah_warga": 357, "gedung_pemerintahan": 6, "pasar": 6, "jalan": 38, "jembatan": 20, "irigasi": 43, "bendungan": 7, "ternak": 110, "sawah_ha": 1166.22, "kebun_ha": 10.3, "estimasi_kerugian": 3678439952229.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Transisi Darurat", "batas_waktu": "2026-03-22", "keterangan_status": "Transisi Darurat ke Pemulihan Bencana Alam, 23 Des 2025 s.d 22 Maret 2026", "no_sk": "SK 360-386-2025\n     360-413-2025\n     360-417-2025", "sk": {"state": "lengkap", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Barat", "kabkota": "Tanah Datar", "luas_ha": 40.64, "kecamatan": 12, "desa": 37, "korban_terdampak": 452.0, "korban_terdampak_note": null, "korban_meninggal": 1, "korban_hilang": 0, "korban_luka": 5, "korban_mengungsi": 530, "lokasi_pengungsi": 32, "rumah_ibadah": 18, "pendidikan": 18, "kesehatan": 1, "rumah_warga": 463, "gedung_pemerintahan": 5, "pasar": 0, "jalan": 29, "jembatan": 33, "irigasi": 89, "bendungan": 2, "ternak": 1335, "sawah_ha": 439.09, "kebun_ha": 41.55, "estimasi_kerugian": 1441867147480.0, "total_usulan": 5, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": "Rekonstruksi infrastruktur jalan, jembatan, drainase, rehabilitasi dan penguatan tebing sungai, normalisasi sungai, irigasi, serta hunian tetap masyarakat yang terkena bencana", "status_darurat": "Transisi Darurat", "batas_waktu": "2026-03-22", "keterangan_status": "Transisi Darurat ke Pemulihan Bencana Alam, 23 Des 2025 s.d 22 Maret 2026", "no_sk": "SK 100.3.3.2/427/BPBD-2025\n     100.3.3.2/446/BPBD-2025\n     100.3.3.2/457/BPBD-2025\n     100.3.3.2/473/BPBD-2025", "sk": {"state": "lengkap", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Barat", "kabkota": "Padang Pariaman", "luas_ha": 1521.26, "kecamatan": 17, "desa": 87, "korban_terdampak": 34182.0, "korban_terdampak_note": null, "korban_meninggal": 9, "korban_hilang": 0, "korban_luka": 11, "korban_mengungsi": 5622, "lokasi_pengungsi": 33, "rumah_ibadah": 35, "pendidikan": 89, "kesehatan": 11, "rumah_warga": 3730, "gedung_pemerintahan": 7, "pasar": 13, "jalan": 30, "jembatan": 53, "irigasi": 84, "bendungan": 0, "ternak": 11342, "sawah_ha": 1890.1, "kebun_ha": 674.0, "estimasi_kerugian": 440183880600.0, "total_usulan": 4, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": "Rekonstruksi infrastruktur jalan, jembatan, drainase, rehabilitasi dan penguatan tebing sungai, normalisasi sungai, irigasi, serta hunian tetap masyarakat yang terkena bencana", "status_darurat": "Transisi Darurat", "batas_waktu": "2026-03-31", "keterangan_status": "Transisi Darurat ke Pemulihan Bencana Alam, 21 Des 2025 s.d 31 Maret 2026", "no_sk": "SK 357/KEP/BPP/2025\n     375/KEP/BPP/2025\n     388/KEP/BPP/2025\n     402/KEP/BPP/2025", "sk": {"state": "lengkap", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Barat", "kabkota": "Agam", "luas_ha": 4186.42, "kecamatan": 16, "desa": 49, "korban_terdampak": 22648.0, "korban_terdampak_note": null, "korban_meninggal": 165, "korban_hilang": 37, "korban_luka": 3, "korban_mengungsi": 3246, "lokasi_pengungsi": 47, "rumah_ibadah": 28, "pendidikan": 87, "kesehatan": 1, "rumah_warga": 1729, "gedung_pemerintahan": 222, "pasar": 5, "jalan": 64, "jembatan": 50, "irigasi": 85, "bendungan": 7, "ternak": 5732, "sawah_ha": 1850.35, "kebun_ha": 143.22, "estimasi_kerugian": 554694410800.0, "total_usulan": 4, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": "Rekonstruksi infrastruktur jalan, jembatan, drainase, rehabilitasi dan penguatan tebing sungai, normalisasi sungai, irigasi, serta hunian tetap masyarakat yang terkena bencana", "status_darurat": "Transisi Darurat", "batas_waktu": "2026-07-04", "keterangan_status": "Tanggap Darurat", "no_sk": "SK 387/KEP/BPP/2025\n     434/KEP/BPP/2025\n     21/KEP/BPP/2026", "sk": {"state": "lengkap", "note": null}, "data_notes": ["kolom Status Darurat (“Transisi Darurat”) berbeda dengan keterangan (“Tanggap Darurat”)"]}, {"provinsi": "Sumatera Barat", "kabkota": "Lima Puluh Kota", "luas_ha": 5.33, "kecamatan": 13, "desa": 46, "korban_terdampak": 1493.0, "korban_terdampak_note": null, "korban_meninggal": 0, "korban_hilang": 0, "korban_luka": 0, "korban_mengungsi": 654, "lokasi_pengungsi": 5, "rumah_ibadah": 1, "pendidikan": 5, "kesehatan": 0, "rumah_warga": 449, "gedung_pemerintahan": 1, "pasar": 2, "jalan": 104, "jembatan": 46, "irigasi": 9, "bendungan": 0, "ternak": 0, "sawah_ha": 107.0, "kebun_ha": 2.12, "estimasi_kerugian": 559424469400.0, "total_usulan": 2, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": "Rekonstruksi infrastruktur jalan, jembatan, drainase, rehabilitasi dan penguatan tebing sungai, normalisasi sungai, irigasi, serta hunian tetap masyarakat yang terkena bencana", "status_darurat": "Transisi Darurat", "batas_waktu": "2026-06-22", "keterangan_status": "Transisi Darurat ke Pemulihan Bencana Alam, 23 Des 2025 s.d 22 Juni 2026", "no_sk": "SK 300.2.3/265/BUP-LK/XI/2025\n     300.2.3/272/BUP-LK/XI/2025\n     300.2.3/274/BUP-LK/XI/2025\n     300.2.3/281/BUP-LK/XII/2025", "sk": {"state": "lengkap", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Barat", "kabkota": "Pasaman", "luas_ha": 1118.8, "kecamatan": 1, "desa": null, "korban_terdampak": 0.0, "korban_terdampak_note": null, "korban_meninggal": 0, "korban_hilang": 0, "korban_luka": 0, "korban_mengungsi": 0, "lokasi_pengungsi": null, "rumah_ibadah": 3, "pendidikan": 10, "kesehatan": 1, "rumah_warga": 31, "gedung_pemerintahan": 0, "pasar": 0, "jalan": 11, "jembatan": 8, "irigasi": 17, "bendungan": 0, "ternak": 0, "sawah_ha": 337.56, "kebun_ha": 17.08, "estimasi_kerugian": 1455392400.0, "total_usulan": 1, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": "Rekonstruksi infrastruktur jalan, jembatan, drainase, rehabilitasi dan penguatan tebing sungai, normalisasi sungai, irigasi, serta hunian tetap masyarakat yang terkena bencana", "status_darurat": "Transisi Darurat", "batas_waktu": "2026-02-04", "keterangan_status": null, "no_sk": "SK  188.45/325/BUP-PAS/2025\n       188.45/341/BUP-PAS/2025", "sk": {"state": "lengkap", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Barat", "kabkota": "Solok Selatan", "luas_ha": 37.38, "kecamatan": 3, "desa": 4, "korban_terdampak": 312.0, "korban_terdampak_note": null, "korban_meninggal": 0, "korban_hilang": 0, "korban_luka": 0, "korban_mengungsi": 0, "lokasi_pengungsi": null, "rumah_ibadah": 0, "pendidikan": 0, "kesehatan": 0, "rumah_warga": 78, "gedung_pemerintahan": 0, "pasar": 0, "jalan": 1, "jembatan": 0, "irigasi": 1, "bendungan": 1, "ternak": 0, "sawah_ha": 9.0, "kebun_ha": 9.0, "estimasi_kerugian": 1250000000.0, "total_usulan": 1, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": "Rekonstruksi infrastruktur jalan, jembatan, drainase, rehabilitasi dan penguatan tebing sungai, normalisasi sungai, irigasi, serta hunian tetap masyarakat yang terkena bencana", "status_darurat": "Tidak Darurat", "batas_waktu": null, "keterangan_status": null, "no_sk": null, "sk": {"state": "belum_lengkap", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Barat", "kabkota": "Pasaman Barat", "luas_ha": 6096.2, "kecamatan": 11, "desa": 55, "korban_terdampak": 61325.0, "korban_terdampak_note": null, "korban_meninggal": 4, "korban_hilang": 3, "korban_luka": 0, "korban_mengungsi": 326, "lokasi_pengungsi": null, "rumah_ibadah": 10, "pendidikan": 31, "kesehatan": 3, "rumah_warga": 2673, "gedung_pemerintahan": 2, "pasar": 0, "jalan": 9, "jembatan": 5, "irigasi": 1, "bendungan": 0, "ternak": 191, "sawah_ha": 931.0, "kebun_ha": 288.0, "estimasi_kerugian": 9258000000.0, "total_usulan": 1, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": "Rekonstruksi infrastruktur jalan, jembatan, drainase, rehabilitasi dan penguatan tebing sungai, normalisasi sungai, irigasi, serta hunian tetap masyarakat yang terkena bencana", "status_darurat": "Transisi Darurat", "batas_waktu": "2026-06-28", "keterangan_status": null, "no_sk": "SK 100.3.3.2/623/BUP-PASBAR/2025\n      100.3.3.2/633/BUP-PASBAR/2025\n      100.3.3.2/640/BUP-PASBAR/2025\n      100.3.3.2/647/BUP-PASBAR/2025\n      100.3.3.2/652/BUP-PASBAR/2025\n      100.3.3.2/655/BUP-PASBAR/2025", "sk": {"state": "lengkap", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Barat", "kabkota": "Kota Padang", "luas_ha": 399.76, "kecamatan": 10, "desa": 44, "korban_terdampak": 27153.0, "korban_terdampak_note": null, "korban_meninggal": 11, "korban_hilang": 2, "korban_luka": 31, "korban_mengungsi": 102, "lokasi_pengungsi": null, "rumah_ibadah": 4, "pendidikan": 29, "kesehatan": 0, "rumah_warga": 5497, "gedung_pemerintahan": 3, "pasar": 0, "jalan": 9, "jembatan": 7, "irigasi": 3, "bendungan": 23, "ternak": 14832, "sawah_ha": 363.0, "kebun_ha": 12.0, "estimasi_kerugian": 225123000000.0, "total_usulan": 1, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": "Rekonstruksi infrastruktur jalan, jembatan, drainase, rehabilitasi dan penguatan tebing sungai, normalisasi sungai, irigasi, serta hunian tetap masyarakat yang terkena bencana", "status_darurat": "Belum Ditetapkan", "batas_waktu": null, "keterangan_status": null, "no_sk": null, "sk": {"state": "belum_dicek", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Barat", "kabkota": "Kota Solok", "luas_ha": 0.26, "kecamatan": null, "desa": null, "korban_terdampak": 9375.0, "korban_terdampak_note": null, "korban_meninggal": 0, "korban_hilang": 0, "korban_luka": 0, "korban_mengungsi": 0, "lokasi_pengungsi": null, "rumah_ibadah": 15, "pendidikan": 11, "kesehatan": 13, "rumah_warga": 35, "gedung_pemerintahan": 5, "pasar": 0, "jalan": 11, "jembatan": 0, "irigasi": 13, "bendungan": 0, "ternak": 1892, "sawah_ha": 78.0, "kebun_ha": 0.0, "estimasi_kerugian": 333500000.0, "total_usulan": 1, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": "Rekonstruksi infrastruktur jalan, jembatan, drainase, rehabilitasi dan penguatan tebing sungai, normalisasi sungai, irigasi, serta hunian tetap masyarakat yang terkena bencana", "status_darurat": "Transisi Darurat", "batas_waktu": "2026-03-22", "keterangan_status": null, "no_sk": "SK 360-386-2025\n     360-413-2025\n     360-417-2025", "sk": {"state": "catatan", "note": "Cek SK Transisi darurat apakah ada SK Bupati atau mengikuti Gubernur"}, "data_notes": []}, {"provinsi": "Sumatera Barat", "kabkota": "Kota Padang Panjang", "luas_ha": 62.84, "kecamatan": 2, "desa": 16, "korban_terdampak": 1100.0, "korban_terdampak_note": "angka perkiraan (±) dari sumber, bukan hitungan pasti", "korban_meninggal": 39, "korban_hilang": 34, "korban_luka": 6, "korban_mengungsi": 1043, "lokasi_pengungsi": 9, "rumah_ibadah": 5, "pendidikan": 14, "kesehatan": 6, "rumah_warga": 397, "gedung_pemerintahan": 26, "pasar": 5, "jalan": 7, "jembatan": 5, "irigasi": 11, "bendungan": 2, "ternak": 0, "sawah_ha": 8.11, "kebun_ha": 0.0, "estimasi_kerugian": 9674000000.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Belum Ditetapkan", "batas_waktu": null, "keterangan_status": null, "no_sk": null, "sk": {"state": "lengkap", "note": null}, "data_notes": ["angka perkiraan (±) dari sumber, bukan hitungan pasti"]}, {"provinsi": "Sumatera Barat", "kabkota": "Kota Bukittinggi", "luas_ha": 47.21, "kecamatan": null, "desa": null, "korban_terdampak": 68.0, "korban_terdampak_note": null, "korban_meninggal": 0, "korban_hilang": 0, "korban_luka": 0, "korban_mengungsi": 0, "lokasi_pengungsi": null, "rumah_ibadah": 0, "pendidikan": 0, "kesehatan": 0, "rumah_warga": 0, "gedung_pemerintahan": 0, "pasar": 0, "jalan": 0, "jembatan": 0, "irigasi": 0, "bendungan": 0, "ternak": 0, "sawah_ha": 13.0, "kebun_ha": 0.0, "estimasi_kerugian": 50000000.0, "total_usulan": 3, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": "Rekonstruksi infrastruktur jalan, jembatan, drainase, rehabilitasi dan penguatan tebing sungai, normalisasi sungai, irigasi, serta hunian tetap masyarakat yang terkena bencana", "status_darurat": "Belum Ditetapkan", "batas_waktu": null, "keterangan_status": null, "no_sk": null, "sk": {"state": "belum_lengkap", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Barat", "kabkota": "Kota Payakumbuh", "luas_ha": 44.4, "kecamatan": null, "desa": null, "korban_terdampak": 0.0, "korban_terdampak_note": null, "korban_meninggal": 0, "korban_hilang": 0, "korban_luka": 0, "korban_mengungsi": 0, "lokasi_pengungsi": null, "rumah_ibadah": 0, "pendidikan": 1, "kesehatan": 0, "rumah_warga": 0, "gedung_pemerintahan": 0, "pasar": 0, "jalan": 0, "jembatan": 0, "irigasi": 1, "bendungan": 0, "ternak": 0, "sawah_ha": 1.0, "kebun_ha": 7.0, "estimasi_kerugian": 569759350.0, "total_usulan": 3, "total_kebutuhan": null, "total_kebutuhan_text": "1. Rp. 44.568.000,-\n2. Rp. 102.500.000,-\n3. -", "daftar_usulan": "1. Bantuan sosial \n2. Bantuan saprodi \n3. Rehabilitasi/Pembangunan RJIT", "status_darurat": "Belum Ditetapkan", "batas_waktu": null, "keterangan_status": null, "no_sk": null, "sk": {"state": "belum_lengkap", "note": null}, "data_notes": []}, {"provinsi": "Sumatera Barat", "kabkota": "Kota Pariaman", "luas_ha": 149.49, "kecamatan": 2, "desa": 16, "korban_terdampak": 7662.0, "korban_terdampak_note": null, "korban_meninggal": 0, "korban_hilang": 0, "korban_luka": 0, "korban_mengungsi": 0, "lokasi_pengungsi": null, "rumah_ibadah": 1, "pendidikan": 41, "kesehatan": 4, "rumah_warga": 1689, "gedung_pemerintahan": 0, "pasar": 0, "jalan": 10, "jembatan": 4, "irigasi": 0, "bendungan": 0, "ternak": 5, "sawah_ha": 949.0, "kebun_ha": 124.0, "estimasi_kerugian": 21402500000.0, "total_usulan": null, "total_kebutuhan": null, "total_kebutuhan_text": null, "daftar_usulan": null, "status_darurat": "Belum Ditetapkan", "batas_waktu": null, "keterangan_status": null, "no_sk": null, "sk": {"state": "catatan", "note": "Cek SK Transisi darurat apakah ada perpanjangan atau SK Rehabilitasi serta SK Perpanjangan dari tgl 2 - 8 Des 25"}, "data_notes": []}], "summary": {"n_kabkota": 52, "provinsi": ["Aceh", "Sumatera Barat", "Sumatera Utara"], "kecamatan": 473, "desa": 4297, "korban_terdampak": 3469006.0, "korban_terdampak_n_excluded": 2, "korban_terdampak_excluded_names": ["Kota Binjai", "Kota Padang Panjang"], "korban_meninggal": 1076, "korban_hilang": 174, "korban_luka": 5625, "korban_mengungsi": 145172, "lokasi_pengungsi": 1038, "estimasi_kerugian": 9593334663308.0, "estimasi_kerugian_n_null": 2, "total_usulan": 171, "n_kabkota_usulan": 13, "total_kebutuhan_quantified": 10219924000.0, "n_kabkota_kebutuhan_number": 1, "n_kabkota_kebutuhan_text_only": 1, "status_counts": {"Transisi Darurat": 34, "Tanggap Darurat": 5, "Tidak Darurat": 3, "Belum Ditetapkan": 10}}};
+</script>
+<script>
+(function(){
+  "use strict";
+ 
+  var records = DATA.records;
+  var summary = DATA.summary;
+ 
+  var statusStyle = {
+    "Transisi Darurat": {bg:"var(--st-transisi-bg)", tx:"var(--st-transisi-tx)"},
+    "Tanggap Darurat":  {bg:"var(--st-tanggap-bg)",  tx:"var(--st-tanggap-tx)"},
+    "Tidak Darurat":    {bg:"var(--st-tidak-bg)",    tx:"var(--st-tidak-tx)"},
+    "Belum Ditetapkan": {bg:"var(--st-none-bg)",     tx:"var(--st-none-tx)"}
+  };
+  var statusOrder = ["Tanggap Darurat","Transisi Darurat","Tidak Darurat","Belum Ditetapkan"];
+ 
+  function fmtInt(n){ return Math.round(n).toLocaleString("id-ID"); }
+  function fmtRp(n){ return "Rp" + Math.round(n).toLocaleString("id-ID"); }
+  function fmtNum(n, d){ return n.toLocaleString("id-ID", {maximumFractionDigits: d||0}); }
+  function fmtDate(iso){
+    if (!iso) return null;
+    var d = new Date(iso + "T00:00:00");
+    var bulan = ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"];
+    return d.getDate() + " " + bulan[d.getMonth()] + " " + d.getFullYear();
+  }
+ 
+  function statusPillEl(status){
+    var s = statusStyle[status] || statusStyle["Belum Ditetapkan"];
+    var span = document.createElement("span");
+    span.className = "status-pill";
+    span.style.background = s.bg; span.style.color = s.tx;
+    var dot = document.createElement("span");
+    dot.className = "dot"; dot.style.background = s.tx;
+    span.appendChild(dot);
+    span.appendChild(document.createTextNode(status));
+    return span;
+  }
+ 
+  // ---------------- KPI cards ----------------
+  function renderKPI(){
+    var el = document.getElementById("kpiGrid");
+    var excludedNames = summary.korban_terdampak_excluded_names.join(", ");
+    var kerugianNullNames = records.filter(function(r){ return r.estimasi_kerugian === null; }).map(function(r){ return r.kabkota; }).join(", ");
+    el.innerHTML =
+      '<div class="kpi">' +
+        '<div class="kpi-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="#16314F"><rect x="3" y="10" width="4" height="11" rx="1"></rect><rect x="10" y="5" width="4" height="16" rx="1"></rect><rect x="17" y="13" width="4" height="8" rx="1"></rect></svg><span class="kpi-label">Wilayah Terdampak</span></div>' +
+        '<div class="num kpi-num">' + summary.n_kabkota + '</div>' +
+        '<div class="kpi-sub">Kabupaten/Kota</div>' +
+        '<div class="kpi-cap">Tersebar di ' + summary.provinsi.length + ' provinsi (' + summary.provinsi.join(", ") + ') &mdash; ' + fmtInt(summary.kecamatan) + ' kecamatan, ' + fmtInt(summary.desa) + ' desa.</div>' +
+      '</div>' +
+      '<div class="kpi">' +
+        '<div class="kpi-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16314F" stroke-width="2"><circle cx="9" cy="8" r="3.5"></circle><path d="M3 20c0-3.6 2.7-6.5 6-6.5s6 2.9 6 6.5"></path><circle cx="18" cy="9" r="2.8"></circle><path d="M15.2 13.4c2.6.4 4.8 2.8 4.8 6.1"></path></svg><span class="kpi-label">Dampak Penduduk</span></div>' +
+        '<div class="num kpi-num">' + fmtInt(summary.korban_terdampak) + '</div>' +
+        '<div class="kpi-sub">Jiwa Terdampak</div>' +
+        '<div class="kpi-cap">' + fmtInt(summary.korban_mengungsi) + ' mengungsi di ' + fmtInt(summary.lokasi_pengungsi) + ' lokasi; ' + fmtInt(summary.korban_meninggal) + ' meninggal, ' + fmtInt(summary.korban_hilang) + ' hilang. ' + summary.korban_terdampak_n_excluded + ' kab/kota (' + excludedNames + ') memakai satuan/format berbeda &amp; tidak dihitung di total ini.</div>' +
+      '</div>' +
+      '<div class="kpi money">' +
+        '<div class="kpi-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C97F1E" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="7" x2="12" y2="17"></line><line x1="9" y1="9.5" x2="15" y2="9.5"></line><line x1="9" y1="14.5" x2="15" y2="14.5"></line></svg><span class="kpi-label">Beban Pemulihan</span></div>' +
+        '<div class="num kpi-num" style="font-size:25px">Rp' + fmtNum(summary.estimasi_kerugian/1e12, 2) + ' T</div>' +
+        '<div class="kpi-sub">Estimasi Kerugian Sementara</div>' +
+        '<div class="kpi-cap">' + fmtRp(summary.estimasi_kerugian) + ' &mdash; ' + summary.estimasi_kerugian_n_null + ' kab/kota (' + kerugianNullNames + ') belum melaporkan angka.</div>' +
+      '</div>' +
+      '<div class="kpi money">' +
+        '<div class="kpi-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C97F1E" stroke-width="2"><rect x="5" y="3" width="14" height="18" rx="2"></rect><line x1="8" y1="8" x2="16" y2="8"></line><line x1="8" y1="12" x2="16" y2="12"></line><line x1="8" y1="16" x2="13" y2="16"></line></svg><span class="kpi-label">Roadmap Pemulihan</span></div>' +
+        '<div class="num kpi-num">' + summary.total_usulan + '</div>' +
+        '<div class="kpi-sub">Usulan Pendanaan Daerah</div>' +
+        '<div class="kpi-cap">Dari ' + summary.n_kabkota_usulan + ' dari ' + summary.n_kabkota + ' kab/kota; baru ' + (summary.n_kabkota_kebutuhan_number + summary.n_kabkota_kebutuhan_text_only) + ' kab/kota punya estimasi kebutuhan &mdash; lihat catatan di bawah.</div>' +
+      '</div>';
+  }
+ 
+  function renderAlert(){
+    var reportedNoNeed = summary.n_kabkota_usulan - summary.n_kabkota_kebutuhan_number - summary.n_kabkota_kebutuhan_text_only;
+    var notReported = summary.n_kabkota - summary.n_kabkota_usulan;
+    document.getElementById("alertText").innerHTML =
+      'Baru <b>' + summary.n_kabkota_usulan + ' dari ' + summary.n_kabkota + ' kab/kota</b> (' + summary.total_usulan + ' usulan) yang melaporkan usulan pendanaan, dan hanya <b>' +
+      (summary.n_kabkota_kebutuhan_number + summary.n_kabkota_kebutuhan_text_only) + ' di antaranya</b> yang sudah punya estimasi kebutuhan (1 dalam angka gabungan, 1 dalam rincian per item). ' +
+      notReported + ' kab/kota belum melaporkan usulan sama sekali, dan ' + reportedNoNeed + ' kab/kota yang sudah lapor usulan belum mengisi estimasi kebutuhannya. Angka Rp' + fmtNum(summary.total_kebutuhan_quantified/1e9,1) + ' M pada kartu di atas <b>bukan</b> total kebutuhan seluruh usulan daerah.';
+  }
+ 
+  function renderQuality(){
+    var rowsWithNotes = records.filter(function(r){ return r.data_notes.length > 0; });
+    var html = '<p>Ditemukan saat membersihkan data sumber (<code>Sheet1</code>), dicantumkan di sini agar tidak menutupi anomalinya:</p><ul>';
+    rowsWithNotes.forEach(function(r){
+      r.data_notes.forEach(function(n){
+        html += '<li><b>' + r.kabkota + '</b> (' + r.provinsi + '): ' + n + '</li>';
+      });
+    });
+    html += '<li><b>' + summary.estimasi_kerugian_n_null + ' kab/kota</b> belum melaporkan Estimasi Kerugian: ' + records.filter(function(r){return r.estimasi_kerugian===null;}).map(function(r){return r.kabkota;}).join(", ") + '.</li>';
+    html += '<li><b>' + summary.status_counts["Belum Ditetapkan"] + ' kab/kota</b> belum memiliki Status Darurat yang ditetapkan di sumber (tampil sebagai &ldquo;Belum Ditetapkan&rdquo;, bukan dikosongkan).</li>';
+    html += '</ul>';
+    document.getElementById("qualityBody").innerHTML = html;
+  }
+ 
+  function renderStatusStrip(){
+    var el = document.getElementById("statusStrip");
+    el.innerHTML = "";
+    statusOrder.forEach(function(st){
+      var count = summary.status_counts[st] || 0;
+      var s = statusStyle[st];
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.setAttribute("aria-pressed", "false");
+      btn.style.background = s.bg; btn.style.color = s.tx;
+      btn.innerHTML = '<span class="dot" style="width:7px;height:7px;border-radius:50%;background:' + s.tx + '"></span>' +
+        st + ' <span class="n">' + count + '</span>';
+      btn.addEventListener("click", function(){
+        state.status = (state.status === st) ? "" : st;
+        document.getElementById("fStatus").value = state.status;
+        syncStatusButtons();
+        render();
+      });
+      el.appendChild(btn);
+    });
+  }
+  function syncStatusButtons(){
+    document.querySelectorAll("#statusStrip button").forEach(function(b){
+      var label = b.textContent.trim().replace(/\s*\d+$/, "");
+      b.setAttribute("aria-pressed", String(label === state.status));
+    });
+  }
+ 
+  // ---------------- filters / sort / table ----------------
+  var state = { provinsi:"", status:"", search:"", sortKey:null, sortDir:1, expanded:{} };
+ 
+  function populateFilters(){
+    var provs = Array.from(new Set(records.map(function(r){ return r.provinsi; }))).sort();
+    var selP = document.getElementById("fProvinsi");
+    provs.forEach(function(p){
+      var o = document.createElement("option"); o.value = p; o.textContent = p; selP.appendChild(o);
+    });
+    var selS = document.getElementById("fStatus");
+    statusOrder.forEach(function(s){
+      var o = document.createElement("option"); o.value = s; o.textContent = s; selS.appendChild(o);
+    });
+  }
+ 
+  function filterRows(){
+    return records.filter(function(r){
+      if (state.provinsi && r.provinsi !== state.provinsi) return false;
+      if (state.status && r.status_darurat !== state.status) return false;
+      if (state.search && r.kabkota.toLowerCase().indexOf(state.search.toLowerCase()) === -1) return false;
+      return true;
+    });
+  }
+ 
+  function sortRows(rows){
+    if (!state.sortKey) return rows;
+    var key = state.sortKey, dir = state.sortDir;
+    return rows.slice().sort(function(a, b){
+      var av = a[key], bv = b[key];
+      if (av === null || av === undefined) av = (typeof bv === "number") ? -Infinity : "";
+      if (bv === null || bv === undefined) bv = (typeof av === "number") ? -Infinity : "";
+      if (typeof av === "string") av = av.toLowerCase();
+      if (typeof bv === "string") bv = bv.toLowerCase();
+      if (av < bv) return -1 * dir;
+      if (av > bv) return 1 * dir;
+      return 0;
+    });
+  }
+ 
+  function kebutuhanCell(r){
+    if (r.total_kebutuhan !== null) return { text: fmtRp(r.total_kebutuhan), cls: "" };
+    if (r.total_kebutuhan_text) return { text: "Rincian per item \u2193", cls: "" };
+    return { text: "Belum diisi", cls: "missing" };
+  }
+ 
+  function buildDetail(r){
+    var box = document.createElement("div");
+    box.className = "detail-inner";
+ 
+    function stat(label, value){
+      return '<div class="dstat"><span class="k">' + label + '</span><span class="v">' + (value === null || value === undefined || value === "" ? '<span class="missing">Belum diisi</span>' : value) + '</span></div>';
+    }
+ 
+    var g1 = '<div class="detail-grid">' +
+      stat("Luas Terdampak", r.luas_ha !== null ? fmtNum(r.luas_ha, 2) + " Ha" : null) +
+      stat("Kecamatan", r.kecamatan) +
+      stat("Desa", r.desa) +
+      stat("Korban Meninggal", r.korban_meninggal) +
+      stat("Korban Hilang", r.korban_hilang) +
+      stat("Korban Luka", r.korban_luka) +
+      stat("Korban Mengungsi", r.korban_mengungsi) +
+      stat("Lokasi Pengungsian", r.lokasi_pengungsi) +
+    '</div>';
+ 
+    var g2title = '<div class="detail-section-title">Infrastruktur &amp; Layanan Dasar (unit)</div>';
+    var g2 = '<div class="detail-grid">' +
+      stat("Rumah Warga", r.rumah_warga) + stat("Pendidikan", r.pendidikan) + stat("Kesehatan", r.kesehatan) +
+      stat("Gedung Pemerintahan", r.gedung_pemerintahan) + stat("Rumah Ibadah", r.rumah_ibadah) + stat("Pasar", r.pasar) +
+      stat("Jalan", r.jalan) + stat("Jembatan", r.jembatan) + stat("Irigasi", r.irigasi) + stat("Bendungan", r.bendungan) +
+    '</div>';
+ 
+    var g3title = '<div class="detail-section-title">Pertanian &amp; Peternakan</div>';
+    var g3 = '<div class="detail-grid">' +
+      stat("Sawah", r.sawah_ha !== null ? fmtNum(r.sawah_ha,2) + " Ha" : null) +
+      stat("Kebun", r.kebun_ha !== null ? fmtNum(r.kebun_ha,2) + " Ha" : null) +
+      stat("Ternak", r.ternak !== null ? fmtInt(r.ternak) + " ekor" : null) +
+    '</div>';
+ 
+    var g4title = '<div class="detail-section-title">Status &amp; Usulan Pendanaan</div>';
+    var g4 = '<div class="detail-grid">' +
+      stat("Batas Waktu Status Darurat", fmtDate(r.batas_waktu)) +
+      stat("Total Usulan Daerah", r.total_usulan) +
+      stat("Kelengkapan SK", r.sk.state === "lengkap" ? "Lengkap" : r.sk.state === "belum_lengkap" ? "Belum lengkap" : r.sk.state === "catatan" ? "Ada catatan" : "Belum dicek") +
+    '</div>';
+ 
+    var extra = "";
+    if (r.keterangan_status) extra += '<div class="detail-note"><b>Keterangan status:</b> ' + r.keterangan_status + '</div>';
+    if (r.daftar_usulan) extra += '<div class="detail-section-title">Daftar Usulan</div><div class="detail-usulan">' + r.daftar_usulan + '</div>';
+    if (r.total_kebutuhan_text) extra += '<div class="detail-section-title">Rincian Kebutuhan Usulan</div><div class="detail-usulan">' + r.total_kebutuhan_text + '</div>';
+    if (r.sk.note) extra += '<div class="detail-note">' + r.sk.note + '</div>';
+    if (r.data_notes.length) extra += r.data_notes.map(function(n){ return '<div class="detail-note">' + n + '</div>'; }).join("");
+    if (r.no_sk) extra += '<details class="sk"><summary>Lihat nomor SK</summary><pre>' + r.no_sk + '</pre></details>';
+ 
+    box.innerHTML = g1 + g2title + g2 + g3title + g3 + g4title + g4 + extra;
+    return box;
+  }
+ 
+  function render(){
+    var rows = sortRows(filterRows());
+    var tbody = document.getElementById("tbody");
+    tbody.innerHTML = "";
+ 
+    if (rows.length === 0){
+      var tr0 = document.createElement("tr");
+      tr0.className = "empty-row";
+      var td0 = document.createElement("td"); td0.colSpan = 8;
+      td0.textContent = "Tidak ada kab/kota yang cocok dengan filter.";
+      tr0.appendChild(td0); tbody.appendChild(tr0);
+    } else {
+      rows.forEach(function(r){
+        var tr = document.createElement("tr");
+        tr.className = "main-row";
+        var isOpen = !!state.expanded[r.kabkota];
+ 
+        var chevTd = document.createElement("td");
+        var chevBtn = document.createElement("button");
+        chevBtn.className = "chev-btn" + (isOpen ? " open" : "");
+        chevBtn.setAttribute("aria-label", "Buka rincian " + r.kabkota);
+        chevBtn.setAttribute("aria-expanded", String(isOpen));
+        chevBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 6 15 12 9 18"></polyline></svg>';
+        chevTd.appendChild(chevBtn);
+        tr.appendChild(chevTd);
+ 
+        var tdP = document.createElement("td"); tdP.textContent = r.provinsi; tr.appendChild(tdP);
+ 
+        var tdK = document.createElement("td");
+        tdK.textContent = r.kabkota;
+        if (r.data_notes.length){
+          var flag = document.createElement("span");
+          flag.className = "flag"; flag.textContent = " \u26A0";
+          flag.title = r.data_notes.join(" \u2014 ");
+          tdK.appendChild(flag);
+        }
+        tr.appendChild(tdK);
+ 
+        var tdS = document.createElement("td"); tdS.appendChild(statusPillEl(r.status_darurat)); tr.appendChild(tdS);
+ 
+        var tdKor = document.createElement("td"); tdKor.className = "num";
+        tdKor.textContent = r.korban_terdampak !== null ? fmtInt(r.korban_terdampak) : "\u2014";
+        if (r.korban_terdampak_note){ tdKor.title = r.korban_terdampak_note; tdKor.style.textDecoration = "underline dotted"; }
+        tr.appendChild(tdKor);
+ 
+        var tdEst = document.createElement("td"); tdEst.className = "num";
+        tdEst.innerHTML = r.estimasi_kerugian !== null ? fmtRp(r.estimasi_kerugian) : '<span class="missing">Belum diisi</span>';
+        tr.appendChild(tdEst);
+ 
+        var tdUsl = document.createElement("td"); tdUsl.className = "num";
+        tdUsl.innerHTML = r.total_usulan !== null ? fmtInt(r.total_usulan) : '<span class="missing">\u2014</span>';
+        tr.appendChild(tdUsl);
+ 
+        var tdKeb = document.createElement("td"); tdKeb.className = "num";
+        var kc = kebutuhanCell(r);
+        tdKeb.innerHTML = kc.cls ? '<span class="' + kc.cls + '">' + kc.text + '</span>' : kc.text;
+        tr.appendChild(tdKeb);
+ 
+        function toggle(){
+          state.expanded[r.kabkota] = !state.expanded[r.kabkota];
+          render();
+        }
+        tr.addEventListener("click", toggle);
+        chevBtn.addEventListener("click", function(e){ e.stopPropagation(); toggle(); });
+ 
+        tbody.appendChild(tr);
+ 
+        if (isOpen){
+          var trD = document.createElement("tr");
+          trD.className = "detail-row";
+          var tdD = document.createElement("td");
+          tdD.colSpan = 8;
+          tdD.appendChild(buildDetail(r));
+          trD.appendChild(tdD);
+          tbody.appendChild(trD);
+        }
+      });
+    }
+ 
+    document.getElementById("resultCount").textContent = rows.length + " dari " + records.length + " kab/kota";
+    updateArrows();
+    renderCompleteness(rows);
+  }
+ 
+  function renderCompleteness(rows){
+    var filledKerugian = rows.filter(function(r){ return r.estimasi_kerugian !== null; }).length;
+    document.getElementById("complLabel").textContent =
+      filledKerugian + " dari " + rows.length + " kab/kota (dalam hasil filter ini) sudah melaporkan Estimasi Kerugian";
+    var pct = rows.length ? Math.round(100 * filledKerugian / rows.length) : 0;
+    document.getElementById("complBar").style.width = pct + "%";
+  }
+ 
+  function updateArrows(){
+    document.querySelectorAll("[data-arrow]").forEach(function(el){
+      var key = el.getAttribute("data-arrow");
+      if (state.sortKey === key){
+        el.textContent = state.sortDir === 1 ? "\u2191" : "\u2193";
+        el.classList.add("active");
+      } else {
+        el.textContent = "\u2195";
+        el.classList.remove("active");
+      }
+    });
+  }
+ 
+  document.getElementById("fProvinsi").addEventListener("change", function(e){ state.provinsi = e.target.value; render(); });
+  document.getElementById("fStatus").addEventListener("change", function(e){ state.status = e.target.value; syncStatusButtons(); render(); });
+  document.getElementById("fSearch").addEventListener("input", function(e){ state.search = e.target.value; render(); });
+  document.getElementById("resetBtn").addEventListener("click", function(){
+    state.provinsi = ""; state.status = ""; state.search = "";
+    document.getElementById("fProvinsi").value = "";
+    document.getElementById("fStatus").value = "";
+    document.getElementById("fSearch").value = "";
+    syncStatusButtons();
+    render();
+  });
+  document.querySelectorAll("th button[data-sort]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var key = btn.getAttribute("data-sort");
+      if (state.sortKey === key) state.sortDir = -state.sortDir;
+      else { state.sortKey = key; state.sortDir = 1; }
+      render();
+    });
+  });
+ 
+  document.getElementById("footerFile").textContent = "kompilasi laporan OPD (rekap per " + records.length + " kabupaten/kota)";
+ 
+  renderKPI();
+  renderAlert();
+  renderQuality();
+  renderStatusStrip();
+  populateFilters();
+  render();
+})();
+</script>
+</body>
+</html>
+ 
+
+
+
+
+
+
+
+
+
